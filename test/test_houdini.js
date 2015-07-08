@@ -28,18 +28,30 @@ var houdini = require('../houdini.js');
 var assert = require('assert');
 
 describe('houdini', function() {
-  describe('offset', function() {
 
-    describe('length', function() {
-      it('should equal length of wrapped array', function() {
+  describe('.length', function() {
+    it('should equal length of backing array', function() {
+      var tarr = [0, 1, 2, 3, 4];
+      assert.equal(houdini(tarr).length, tarr.length);
+    })
+  });
+
+  describe('.offset()', function() {
+
+    describe('.getIndex()', function() {
+      it('should return the index', function() {
         var tarr = [0, 1, 2, 3, 4];
-        assert.equal(houdini(tarr).length, tarr.length);
-      })
 
+        for (var i=0; i < houdini(tarr).length; i++) {
+          assert.equal(houdini(tarr).offset(i).getIndex(), i);
+        }
+
+      });
     });
 
-    describe('get', function() {
-      it('should return the value of the element of the wrapped array at those offsets', function() {
+
+    describe('.get()', function() {
+      it('should return the value of the backing array element at those offsets', function() {
         var tarr = [0, 1, 2, 3, 4];
 
         for (var i=0; i < houdini(tarr).length; i++) {
@@ -49,8 +61,8 @@ describe('houdini', function() {
       });
     });
 
-    describe('set', function() {
-      it('should return the value of the element of the wrapped array at those offsets', function() {
+    describe('.set()', function() {
+      it('should return the value of the backing array element at those offsets', function() {
         var tarr = [0, 1, 2, 3, 4];
         var sarr = tarr.reverse();
 
@@ -63,7 +75,56 @@ describe('houdini', function() {
     });
   });
 
-  describe('reverse', function() {
+  describe('.reverse()', function() {
+    describe('.length', function() {
+      it('should equal length of backing array', function() {
+        var tarr = [0, 1, 2, 3, 4];
+        assert.equal(houdini(tarr).reverse().length, tarr.length);
+      })
 
+    });
+
+    describe('.offset()', function() {
+
+      describe('.getIndex()', function() {
+        it('should return the index reversed', function() {
+          var tarr = [0, 1, 2, 3, 4];
+
+          for (var i=0; i < houdini(tarr).length; i++) {
+            assert.equal(houdini(tarr).offset(i).getIndex(), i);
+          }
+
+        });
+      });
+
+      describe('.get()', function() {
+        it('should return the value of the backing array reversed at those offsets', function() {
+          var tarr = [0, 1, 2, 3, 4];
+          var rarr = houdini(tarr).reverse();
+          var sarr = [4, 3, 2, 1, 0];
+
+          for (var i=0; i < rarr.length; i++) {
+            assert.equal(rarr.offset(i).get(), sarr[i]);
+          }
+
+        });
+      });
+
+      describe('.set()', function() {
+        it('should return the value of the backing array reversed at those offsets', function() {
+          var tarr = [0, 1, 2, 3, 4];
+          var rarr = houdini(tarr).reverse();
+          var sarr = [4, 3, 2, 1, 0];
+
+          for (var i=0; i < rarr.length; i++) {
+            rarr.offset(i).set(i);
+          }
+
+          for (var i=0; i < tarr.length; i++) {
+            assert.equal(tarr[i], sarr[i]);
+          }
+        });
+      });
+    });
   });
 });
