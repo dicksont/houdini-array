@@ -24,65 +24,76 @@
  *
  */
 
+(function() {
 
-function Houdini(arr) {
-  this.reversed = false;
-  this.arr = arr;
-}
+  function Houdini(arr) {
+    this.reversed = false;
+    this.arr = arr;
+  }
 
-Houdini.prototype.reverse = function() {
-  this.reversed = !this.reversed;
-  return this;
-}
+  Houdini.prototype.reverse = function() {
+    this.reversed = !this.reversed;
+    return this;
+  }
 
-Houdini.prototype.offset = function(index) {
+  Houdini.prototype.offset = function(index) {
 
-  var getRealIndex = (function()  {
-    return (this.reversed)? (this.arr.length - 1 - index) : index;
-  }).bind(this);
+    var getRealIndex = (function()  {
+      return (this.reversed)? (this.arr.length - 1 - index) : index;
+    }).bind(this);
 
-  var get = (function() {
-    try {
-      return this.arr[getRealIndex()];
-    } catch(err) {
-      throw new Error('houdini-array: get element at houdini(array)[' + index + '] => array[' + index + '] failed. ' + err);
-    }
-  }).bind(this);
+    var get = (function() {
+      try {
+        return this.arr[getRealIndex()];
+      } catch(err) {
+        throw new Error('houdini-array: get element at houdini(array)[' + index + '] => array[' + index + '] failed. ' + err);
+      }
+    }).bind(this);
 
-  var set = (function(value) {
-    try {
-      this.arr[getRealIndex()] = value;
-    } catch(err) {
-      throw new Error('houdini-array: set element at houdini index' + index + ' / real index ' + index + ' failed. ' + err);
-    }
-  }).bind(this);
+    var set = (function(value) {
+      try {
+        this.arr[getRealIndex()] = value;
+      } catch(err) {
+        throw new Error('houdini-array: set element at houdini index' + index + ' / real index ' + index + ' failed. ' + err);
+      }
+    }).bind(this);
 
-  var obj = {
-    get: get,
-    set: set,
-    getIndex: getRealIndex
-  };
+    var obj = {
+      get: get,
+      set: set,
+      getIndex: getRealIndex
+    };
 
-  Object.defineProperty(obj, 'value', {
-    get: get,
-    set: set,
+    Object.defineProperty(obj, 'value', {
+      get: get,
+      set: set,
+      enumerable: true
+    });
+
+    return obj;
+
+
+
+  }
+
+  Object.defineProperty(Houdini.prototype, 'length', { get: function () {
+      return this.arr.length;
+    },
     enumerable: true
   });
 
-  return obj;
+  function houdini(arr) {
+    return new Houdini(arr);
+  }
 
+  if (typeof module !== 'undefined' && module && module.exports) { // Node.js & CommonJS
+    module.exports = houdini;
+  } else if (typeof define === 'function' && define.amd) {
+    define('houdini-array', [], function() {
+      return houdini;
+    });
+  } else { // Browser
+    window.houdini = houdini;
+  }
 
-
-}
-
-Object.defineProperty(Houdini.prototype, 'length', { get: function () {
-    return this.arr.length;
-  },
-  enumerable: true
-});
-
-function houdini(arr) {
-  return new Houdini(arr);
-}
-
-module.exports = houdini;
+})();
