@@ -64,12 +64,47 @@ describe('houdini', function() {
     describe('.set()', function() {
       it('should return the value of the backing array element at those offsets', function() {
         var tarr = [0, 1, 2, 3, 4];
-        var sarr = tarr.reverse();
+        var sarr = [4, 3, 2, 1, 0];
 
         for (var i=0; i < houdini(tarr).length; i++) {
           houdini(tarr).offset(i).set(sarr[i]);
           assert.equal(houdini(tarr).offset(i).get(), sarr[i]);
         }
+
+      });
+    });
+
+    describe('.push()', function() {
+      it('should push the element onto the backing array', function() {
+        var tarr = [0, 1, 2, 3, 4];
+
+        houdini(tarr).push(5);
+        assert.equal(tarr[5], 5);
+      });
+    });
+
+    describe('.pop()', function() {
+      it('should pop the element from the backing array', function() {
+        var tarr = [0, 1, 2, 3, 4];
+
+        assert.equal(houdini(tarr).pop(), 4);
+      });
+    });
+
+    describe('.shift()', function() {
+      it('should shift the element from the backing array', function() {
+        var tarr = [0, 1, 2, 3, 4];
+
+        assert.equal(houdini(tarr).shift(), 0);
+      });
+    });
+
+    describe('.unshift()', function() {
+      it('should unshift the element onto the backing array', function() {
+        var tarr = [0, 1, 2, 3, 4];
+
+        houdini(tarr).unshift(-1);
+        assert.equal(tarr[0], -1);
 
       });
     });
@@ -123,6 +158,41 @@ describe('houdini', function() {
           for (var i=0; i < tarr.length; i++) {
             assert.equal(tarr[i], sarr[i]);
           }
+        });
+      });
+
+      describe('.push()', function() {
+        it('should shift the element onto the backing array', function() {
+          var tarr = [0, 1, 2, 3, 4];
+
+          houdini(tarr).reverse().push(5);
+          assert.equal(tarr[0], 5);
+        });
+      });
+
+      describe('.pop()', function() {
+        it('should shift the element from the backing array', function() {
+          var tarr = [0, 1, 2, 3, 4];
+
+          assert.equal(houdini(tarr).reverse().pop(), 0);
+        });
+      });
+
+      describe('.shift()', function() {
+        it('should pop the element from the backing array', function() {
+          var tarr = [0, 1, 2, 3, 4];
+
+          assert.equal(houdini(tarr).reverse().shift(), 4);
+        });
+      });
+
+      describe('.unshift()', function() {
+        it('should push the element onto the backing array', function() {
+          var tarr = [0, 1, 2, 3, 4];
+
+          houdini(tarr).reverse().unshift(-1);
+          assert.equal(tarr[5], -1);
+
         });
       });
     });
