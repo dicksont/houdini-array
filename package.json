@@ -1,0 +1,26 @@
+{
+  "name": "houdini-array",
+  "version": "0.0.0",
+  "description": "Reverses arrays w/o really reversing them",
+  "main": "houdini.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dicksont/houdini-array.git"
+  },
+  "keywords": [
+    "array",
+    "reverse"
+  ],
+  "author": "Dickson Tam <dicksont650@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dicksont/houdini-array/issues"
+  },
+  "homepage": "https://github.com/dicksont/houdini-array#readme"
+}
