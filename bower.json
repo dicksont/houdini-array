@@ -1,0 +1,30 @@
+{
+  "name": "houdini-array",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dicksont/houdini-array",
+  "authors": [
+    "Dickson Tam <dicksont650@gmail.com>"
+  ],
+  "description": "Reverses arrays w/o really reversing them",
+  "main": "houdini.js",
+  "devDependencies": {
+    "mocha" : "^2.2.5"
+  },
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "array",
+    "reverse"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
