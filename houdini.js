@@ -36,6 +36,35 @@
     return this;
   }
 
+  Houdini.prototype.pop = function() {
+    return this.reversed? this.arr.shift() : this.arr.pop();
+  }
+
+  Houdini.prototype.shift = function() {
+    return this.reversed? this.arr.pop() : this.arr.shift();
+  }
+
+  Houdini.prototype.push = function() {
+    var args = Array.prototype.slice.call(arguments, 1);
+
+    if (this.reversed) {
+      return Array.prototype.unshift.apply(this.arr, args);
+    } else {
+      return Array.prototype.push.apply(this.arr, args);
+    }
+  }
+
+  Houdini.prototype.unshift = function() {
+    var args = Array.prototype.slice.call(arguments, 1);
+
+    if (this.reversed) {
+      return Array.prototype.push.apply(this.arr, args);
+    } else {
+      return Array.prototype.shift.apply(this.arr, args);
+    }
+  }
+
+
   Houdini.prototype.offset = function(index) {
 
     var getRealIndex = (function()  {
