@@ -1,7 +1,7 @@
 {
   "name": "houdini-array",
   "version": "0.0.1",
-  "description": "Reverses arrays w/o really reversing them",
+  "description": "Reverse arrays w/o really reversing them",
   "main": "houdini.js",
   "directories": {
     "test": "test"

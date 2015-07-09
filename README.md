@@ -2,7 +2,7 @@
 [![npm version](https://badge.fury.io/js/houdini-array.svg)](http://badge.fury.io/js/houdini-array)
 [![Bower version](https://badge.fury.io/bo/houdini-array.svg)](http://badge.fury.io/bo/houdini-array)
 
-Houdini reverses arrays w/o really reversing them.
+Reverse arrays w/o really reversing them.
 
 ## License
 The MIT License (MIT)
