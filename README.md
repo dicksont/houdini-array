@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/dicksont/retoken.svg?branch=master)](https://travis-ci.org/dicksont/retoken)
+[![npm version](https://badge.fury.io/js/houdini-array.svg)](http://badge.fury.io/js/houdini-array)
+[![Bower version](https://badge.fury.io/bo/houdini-array.svg)](http://badge.fury.io/bo/houdini-array)
+
 Houdini reverses arrays w/o really reversing them.
 
 ## License
